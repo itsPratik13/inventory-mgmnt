@@ -1,19 +1,29 @@
+"use client"
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
-
 import React from "react";
+import StoreProvider, { useAppSelector } from "../redux";
 
-const DashboardWrapper = ({ children }: { children: React.ReactNode }) => {
+const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+  const isSidebarCollapsed=useAppSelector((state)=>state.global.isSidebarCollapsed);
   return (
     <div className="flex w-full min-h-screen">
       {/* sidebar */}
-        <Sidebar/>
-      <main className="flex flex-col w-full h-full py-7 px-9 md:pl-24">
-        <Navbar/>
-        
-        {children}</main>
-    
+      <Sidebar />
+      <main className={`flex flex-col w-full h-full py-7 px-9 {isSidebarCollapsed ? "md:pl-24" :"md:pl-72"}`}>
+        <Navbar />
+
+        {children}
+      </main>
     </div>
+  );
+};
+
+const DashboardWrapper = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <StoreProvider>
+      <DashboardLayout>{children}</DashboardLayout>
+    </StoreProvider>
   );
 };
 
