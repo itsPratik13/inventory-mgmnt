@@ -10,7 +10,11 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     <div className="flex w-full min-h-screen">
       {/* sidebar */}
       <Sidebar />
-      <main className={`flex flex-col w-full h-full py-7 px-9 {isSidebarCollapsed ? "md:pl-24" :"md:pl-72"}`}>
+      <main
+        className={`flex flex-col w-full h-full py-7 px-9 ${
+          isSidebarCollapsed ? "md:pl-16" : "md:pl-64"
+        }`}
+      >
         <Navbar />
 
         {children}

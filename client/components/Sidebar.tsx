@@ -28,8 +28,8 @@ const Sidebar = () => {
     <div className={fixedSidebarClassname}>
       {/* top */}
       <div className="flex gap-3 justify-between md:justify-normal items-center pt-8">
-        <div>logo</div>
-        <h1 className="font-semibold">Stock</h1>
+        {!isSidebarCollapsed && <div>logo</div>}
+        {!isSidebarCollapsed && <h1 className="font-semibold">Stock</h1>}
         <button
           className="md:hidden px-3 py-3 hover:bg-white/5 transition rounded-full"
           onClick={() => toggleSidebar()}

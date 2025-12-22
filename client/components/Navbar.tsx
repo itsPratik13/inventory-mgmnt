@@ -2,7 +2,8 @@
 import React from "react";
 import { useAppDispatch, useAppSelector } from '@/app/redux'
 import { setIsSidebarCollapsed } from '@/app/state'
-import { Bell, Menu, MenuIcon, Settings } from "lucide-react";
+import { Bell, Menu, Settings, Search } from "lucide-react";
+import Link from "next/link";
 
 const Navbar = () => {
   const dispatch=useAppDispatch();
@@ -18,7 +19,7 @@ const toggleSidebar=()=>{
           <Menu className="w-4 h-4 " />
         </button>
      
-      <div className="relative">
+      <div className="relative w-[220px] sm:w-[260px] md:w-[360px] lg:w-[420px]">
         <input
           type="search"
           placeholder="Type to search products and groups"
@@ -26,7 +27,6 @@ const toggleSidebar=()=>{
              bg-zinc-900 text-white
              border border-zinc-800
              pl-10 pr-3 py-1
-             md:w-85
              hover:bg-zinc-800
              focus:bg-zinc-800
              focus:outline-none
@@ -34,7 +34,7 @@ const toggleSidebar=()=>{
         />
 
         <div className="absolute inset-y-0 left-0 pl-3  flex items-center pointer-events-none">
-          <Bell className="" size={20} />
+          <Search size={18} />
         </div>
       </div>
       </div>
@@ -50,12 +50,14 @@ const toggleSidebar=()=>{
                 image
 
             </div>
-            <span className="font-medium mb-3">John </span>
+            <span className="font-medium">John</span>
 
           </div>
         </div>
-        <div className="">
-          <Settings  href="/settings" size={24} className="cursor-pointer"/>
+        <div>
+          <Link href="/settings" aria-label="Settings">
+            <Settings size={24} className="cursor-pointer" />
+          </Link>
         </div>
       </div>
     </div>
