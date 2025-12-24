@@ -1,8 +1,60 @@
 "use client";
 import { useAppDispatch, useAppSelector } from "@/app/redux";
 import { setIsSidebarCollapsed } from "@/app/state";
-import { Menu } from "lucide-react";
+import {
+  Icon,
+  Layout,
+  LucideIcon,
+  Menu,
+  Archive,
+  Clipboard,
+  User,
+  Settings,
+  CircleDollarSign,
+} from "lucide-react";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
+interface SidebarLinkProps {
+  href: string;
+  label: string;
+  icon: LucideIcon;
+  isCollapsed: boolean;
+}
+
+const SidebarLink = ({
+  href,
+  label,
+  icon: Icon,
+  isCollapsed,
+}: SidebarLinkProps) => {
+  const pathname = usePathname();
+  const isActive =
+    pathname == href || (pathname === "/" && href === "/dashboard");
+
+  return (
+    <Link href={href}>
+      <div
+        className={`cursor-pointer flex items-center ${
+          isCollapsed ? "justify-center py-4" : "justify-start px-8 py-4"
+        }
+      hover:bg-zinc-700 gap-3 ${
+        isActive ? "bg-zinc-800 font-semibold" : "font-medium"
+      }
+
+      `}
+      >
+        <Icon className="w-6 h-6" />
+        <span
+          className={`${isCollapsed ? "hidden" : "block"} font-medium text-sm`}
+        >
+          {label}
+        </span>
+      </div>
+    </Link>
+  );
+};
 
 const Sidebar = () => {
   const dispatch = useAppDispatch();
@@ -27,9 +79,11 @@ const Sidebar = () => {
   return (
     <div className={fixedSidebarClassname}>
       {/* top */}
-      <div className="flex gap-3 justify-between md:justify-normal items-center pt-8">
-        {!isSidebarCollapsed && <div>logo</div>}
-        {!isSidebarCollapsed && <h1 className="font-semibold">Stock</h1>}
+      <div className="flex gap-5 justify-between md:justify-normal items-center pt-8 ">
+        <div className="">logo</div>
+        {!isSidebarCollapsed && (
+          <h1 className="font-semibold block text-2xl mb-0.5 ">Stock</h1>
+        )}
         <button
           className="md:hidden px-3 py-3 hover:bg-white/5 transition rounded-full"
           onClick={() => toggleSidebar()}
@@ -39,7 +93,44 @@ const Sidebar = () => {
       </div>
       {/* links */}
 
-      <div className="grow mt-8"></div>
+      <div className="grow mt-8">
+        <SidebarLink
+          href="/dashboard"
+          icon={Layout}
+          label="Dashboard"
+          isCollapsed={isSidebarCollapsed}
+        />
+        <SidebarLink
+          href="/inventory"
+          icon={Archive}
+          label="Inventory"
+          isCollapsed={isSidebarCollapsed}
+        />
+        <SidebarLink
+          href="/products"
+          icon={Clipboard}
+          label="Products"
+          isCollapsed={isSidebarCollapsed}
+        />
+        <SidebarLink
+          href="/users"
+          icon={User}
+          label="Users"
+          isCollapsed={isSidebarCollapsed}
+        />
+        <SidebarLink
+          href="/settings"
+          icon={Settings}
+          label="Settings"
+          isCollapsed={isSidebarCollapsed}
+        />
+        <SidebarLink
+          href="/expenses"
+          icon={CircleDollarSign}
+          label="Expenses"
+          isCollapsed={isSidebarCollapsed}
+        />
+      </div>
 
       {/* footer  */}
       <div className="text-center text-xs">
