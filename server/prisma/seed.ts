@@ -1,6 +1,8 @@
-import {PrismaClient} from "@prisma/client";
-import fs from "fs";
-import path from "path";
+import "dotenv/config";
+import { PrismaClient } from "../generated/prisma/client.js";
+import * as fs from "fs";
+import * as path from "path";
+import { fileURLToPath } from "url";
 const prisma = new PrismaClient();
 
 async function deleteAllData(orderedFileNames: string[]) {
@@ -23,6 +25,8 @@ async function deleteAllData(orderedFileNames: string[]) {
 }
 
 async function main() {
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = path.dirname(__filename);
   const dataDirectory = path.join(__dirname, "seedData");
 
   const orderedFileNames = [
@@ -51,9 +55,11 @@ async function main() {
     }
 
     for (const data of jsonData) {
-      await model.create({
-        data,
-      });
+      try {
+        await model.create({ data });
+      } catch (err) {
+        console.error(`Skipping invalid ${modelName} record:`, err);
+      }
     }
 
     console.log(`Seeded ${modelName} with data from ${fileName}`);
