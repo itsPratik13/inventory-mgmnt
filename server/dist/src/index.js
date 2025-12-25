@@ -4,9 +4,7 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import dotenv from "dotenv";
-
 //route imports
-
 /*configurations */
 dotenv.config();
 const app = express();
@@ -15,14 +13,12 @@ app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
-
 /*routes */
-
 /*server */
-
-const port=process.env.PORT||3001;
-app.listen(port,()=>{
-    console.log("Server is running on port", port);
-})
+const port = process.env.PORT || 3001;
+app.listen(port, () => {
+    console.log("Server is running ong port", port);
+});
+//# sourceMappingURL=index.js.map
