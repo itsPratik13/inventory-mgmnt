@@ -6,6 +6,7 @@ import morgan from "morgan";
 import dotenv from "dotenv";
 
 //route imports
+import dashboardRoutes from "./routes/dashboard.routes.js"
 
 /*configurations */
 dotenv.config();
@@ -19,6 +20,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(cors());
 
 /*routes */
+app.use("/dashboard",dashboardRoutes);
 app.get("/health",(req,res)=>{
     res.send("Server is up and running");
 });
