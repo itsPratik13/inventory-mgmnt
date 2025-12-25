@@ -16,9 +16,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 /*routes */
+app.get("/health", (req, res) => {
+    res.send("Server is up and running");
+});
 /*server */
-const port = process.env.PORT || 3001;
-app.listen(port, () => {
-    console.log("Server is running ong port", port);
+const port = Number(process.env.PORT) || 8000;
+const server = app.listen(port, "0.0.0.0", () => {
+    console.log(`Server is running on port ${port}`);
+});
+server.on("error", (err) => {
+    console.error("Server error:", err);
+});
+server.on("close", () => {
+    console.log("Server closed");
 });
 //# sourceMappingURL=index.js.map
