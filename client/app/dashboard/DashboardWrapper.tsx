@@ -12,7 +12,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       <Sidebar />
       <main
         className={`flex flex-col w-full h-full py-7 px-9 ${
-          isSidebarCollapsed ? "md:pl-16" : "md:pl-64"
+          isSidebarCollapsed ? "md:pl-16" : "md:pl-64 "
         }`}
       >
         <Navbar />
