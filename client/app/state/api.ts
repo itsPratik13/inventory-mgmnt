@@ -38,7 +38,9 @@ export interface DashboardMetrics {
   expensebyCategory: ExpenseByCategory[];
 }
 export const api = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_URL }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000",
+  }),
   reducerPath: "api",
   tagTypes: ["DashboardMetrics"],
   endpoints: (build) => ({
