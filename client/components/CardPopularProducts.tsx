@@ -8,7 +8,7 @@ const CardPopularProducts = () => {
   return (
     <div className="row-span-3 xl:row-span-6  bg-zinc-900 text-white  border border-zinc-800 rounded-lg   flex flex-col">
       {isLoading ? (
-        <div className="m-5 flex items-center justify-center text-5xl font-bold"> ....Loading </div>
+        <div className=" flex-1 flex items-center justify-center text-4xl font-bold"> ....Loading </div>
       ) : (
         <>
         <h3 className="text-lg font-semibold px-7 pt-5 pb-2 text-center">
@@ -19,7 +19,7 @@ const CardPopularProducts = () => {
           <h1 className="text-bold">No popular products!</h1>
         )}
         <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-transparent hover:scrollbar-thumb-zinc-600">
-            {dashboardMetrics?.popularProducts.map((product)=>(
+            {!error && dashboardMetrics?.popularProducts.map((product)=>(
               <div
               key={product.productId} className="flex items-center justify-between gap-3 px-5 py-7 border-b hover:bg-zinc-800">
                 <div className="flex items-center gap-3">
@@ -37,7 +37,7 @@ const CardPopularProducts = () => {
               {/* right side */}
               <div className="text-xs flex items-center">
                 <button className="p-2 rounded-full">
-                  <ShoppingBag className="w-4 h-4 items-center"/>
+                  <ShoppingBag className="w-4 h-4 items-center mb-2"/>
                   {Math.round(product.stockQuantity/1000)} k sold 
                 </button>
 
