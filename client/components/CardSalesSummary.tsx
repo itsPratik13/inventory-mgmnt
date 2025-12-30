@@ -29,7 +29,7 @@ const CardSalesSummary = () => {
     salesData.reduce((acc, curr) => {
       return acc.totalValue > curr.totalValue ? acc : curr;
     }, salesData[0]) || 0;
-    const [timeframe, setTimeFrame] = useState("weekly");
+    const [timeframe, setTimeFrame] = useState("daily");
 
     
   const filteredSalesData = React.useMemo(() => {
@@ -81,8 +81,8 @@ const CardSalesSummary = () => {
   return (
     <div className="row-span-3 xl:row-span-6 bg-zinc-900 text-white  border border-zinc-800 rounded-lg flex flex-col justify-between">
       {isLoading ? (
-        <div className="flex-1 flex items-center justify-center text-4xl font-bold">
-          ....Loading
+        <div className="flex-1 flex items-center justify-center text-4xl font-bold  animate-pulse">
+          Loading...
         </div>
       ) : (
         <>
@@ -164,6 +164,9 @@ const CardSalesSummary = () => {
                       day: "numeric",
                     });
                   }}
+                  contentStyle={{ backgroundColor: "#000", border: "none", borderRadius: "5px" }}
+                  itemStyle={{ color: "#fff" }}
+                  labelStyle={{ color: "#fff" }}
                 />
                 <Bar
                   dataKey="totalValue"

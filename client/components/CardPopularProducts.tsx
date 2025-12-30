@@ -8,7 +8,7 @@ const CardPopularProducts = () => {
   return (
     <div className="row-span-3 xl:row-span-6  bg-zinc-900 text-white  border border-zinc-800 rounded-lg   flex flex-col">
       {isLoading ? (
-        <div className=" flex-1 flex items-center justify-center text-4xl font-bold"> ....Loading </div>
+        <div className=" flex-1 flex items-center justify-center text-4xl font-bold animate-pulse"> Loading... </div>
       ) : (
         <>
         <h3 className="text-lg font-semibold px-7 pt-5 pb-2 text-center">
