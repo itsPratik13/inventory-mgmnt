@@ -19,7 +19,7 @@ const CardPurchaseSummary = () => {
   return (
     <div className="flex flex-col row-span-2 xl:row-span-3 col-span-1 md:col-span-2 xl:col-span-1 bg-zinc-900 shadow-md rounded-2xl text-white p-5">
       {isLoading ? (
-        <div className="text-center text-lg animate-pulse">Loading...</div>
+        <div className="flex-1 flex items-center justify-center text-4xl font-bold animate-pulse" >Loading...</div>
       ) : (
         <>
           {/* HEADER */}

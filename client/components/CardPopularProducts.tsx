@@ -27,7 +27,7 @@ const CardPopularProducts = () => {
                 <div className="flex flex-col justify-between gap-1">
                   <div className="text-white font-bold">{product.name}</div>
                   <div className="flex text-sm items-center">
-                    <span className="text-xs">Rs. {product.price}</span>
+                    <span className="text-xs">${product.price}</span>
                     <span className="mx-2">|</span>
                     <Rating rating={product.rating||0}/>
                   </div>

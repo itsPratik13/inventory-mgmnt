@@ -98,7 +98,7 @@ const CardSalesSummary = () => {
             {/* title  */}
             <div className="flex justify-between items-center mb-6 px-7 ">
               <div className="text-lg font-medium mt-2">
-                <p className="text-sm text-white font-semibold">Value</p>
+                <p className="text-xs text-gray-400">Value</p>
                 <span className="text-2xl font-bold">
                   ${" "}
                   {(totalValue / 1000000).toLocaleString(undefined, {
