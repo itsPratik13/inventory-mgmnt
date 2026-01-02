@@ -20,7 +20,7 @@ const CardExpenseSummary = () => {
     dashboardMetrics?.expensebyCategory || [];
 
   const expenseSums = expenseByCategorySummary.reduce(
-    (acc: ExpenseSums, item: ExpenseByCategorySummary) => {
+    (acc: ExpenseSums, item: expenseByCategorySummary) => {
       const category = item.category + " Expenses";
       const amount = parseInt(item.amount, 10);
       if (!acc[category]) acc[category] = 0;
@@ -46,7 +46,7 @@ const CardExpenseSummary = () => {
   return (
     <div className="row-span-3 bg-zinc-900 shadow-md rounded-2xl flex flex-col justify-between">
       {isLoading ? (
-        <div className="m-5">Loading...</div>
+        <div className="flex-1 flex items-center justify-center text-4xl font-bold animate-pulse">Loading...</div>
       ) : (
         <>
           {/* HEADER */}
