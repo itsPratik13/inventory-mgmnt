@@ -50,7 +50,7 @@ const StatCard = ({
             <React.Fragment key={index}>
               <div className="flex items-center justify-between my-4">
                 <span className="text-white">{detail.title}</span>
-                <span className="font-bold text-gray-800">{detail.amount}</span>
+                <span className="font-bold text-white">{detail.amount}</span>
                 <div className="flex items-center">
                   <detail.IconComponent
                     className={`w-4 h-4 mr-1 ${getChangeColor(
