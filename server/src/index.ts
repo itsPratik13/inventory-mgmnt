@@ -8,6 +8,7 @@ import dotenv from "dotenv";
 //route imports
 import dashboardRoutes from "./routes/dashboard.routes.js"
 import productRoutes from "./routes/product.routes.js"
+import userRoutes from "./routes/user.route.js"
 
 /*configurations */
 dotenv.config();
@@ -22,7 +23,8 @@ app.use(cors());
 
 /*routes */
 app.use("/dashboard",dashboardRoutes);
-app.use("/products",productRoutes)
+app.use("/products",productRoutes);
+app.use("/users",userRoutes);
 app.get("/health",(req,res)=>{
     res.send("Server is up and running");
 });
