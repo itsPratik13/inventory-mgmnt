@@ -1,15 +1,27 @@
 "use client";
 
 import React, { useState } from "react";
-import { useGetProductsQuery } from "../state/api";
+import { useCreateProductMutation, useGetProductsQuery } from "../state/api";
 import { PlusCircleIcon, SearchIcon } from "lucide-react";
 
 import Header from "@/components/Header";
 import Rating from "@/components/Rating";
+import CreateModal from "@/components/CreateModal";
+
+type ProductFormData = {
+  name: string;
+  rating: number;
+  stockQuantity: number;
+  price: number;
+};
 
 const Products = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [isModelOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [createProduct] = useCreateProductMutation();
+  const handleCreateProduct = async (productData: ProductFormData) => {
+    await createProduct(productData);
+  };
   const {
     data: products,
     isLoading,
@@ -52,48 +64,47 @@ const Products = () => {
       <div className="flex justify-between items-center mb-6">
         <Header name="Products" />
         <button
-          className="flex items-center font-bold py-2  bg-zinc-900 text-white
- border border-zinc-800  hover:bg-zinc-800
- focus:bg-zinc-800
- focus:outline-none
- focus:ring-2 focus:ring-indigo-500/20 rounded px-4 cursor-pointer"
+          className="flex items-center font-bold py-2  bg-zinc-900 text-white border border-zinc-800  hover:bg-zinc-800 focus:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 rounded px-4 cursor-pointer"
           onClick={() => setIsModalOpen(true)}
         >
-          <PlusCircleIcon className="w-5 h-5 mr-2" />
-          {" "}
-          Create Product
+          <PlusCircleIcon className="w-5 h-5 mr-2" /> Create Product
         </button>
       </div>
       {/* product list  */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 justify-between">
-        {isLoading?(
+        {isLoading ? (
           <div className="flex h-full items-center justify-center text-4xl font-bold animate-pulse text-white">
-          Loading...
-        </div>
-
+            Loading...
+          </div>
         ) : (
-          products.map((product)=>(
-            <div key={product.productId} className="border shadow rounded-md p-4 max-w-full w-full mx-auto">
+          products.map((product) => (
+            <div
+              key={product.productId}
+              className="border shadow rounded-md p-4 max-w-full w-full mx-auto"
+            >
               <div className="flex flex-col items-center">
                 img
                 <h3 className="text-lg font-semibold">{product.name}</h3>
                 <p className="text-gray-300">${product.price.toFixed(2)}</p>
-                <div className="text-sm text-gray-300">Stock: {product.stockQuantity}</div>
+                <div className="text-sm text-gray-300">
+                  Stock: {product.stockQuantity}
+                </div>
                 {product.rating && (
                   <div className="flex items-center mt-2">
-                  <Rating rating={product.rating} />
+                    <Rating rating={product.rating} />
                   </div>
                 )}
-
               </div>
-
-              </div>
+            </div>
           ))
-
         )}
-
       </div>
       {/* modal  */}
+      <CreateModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onCreate={handleCreateProduct}
+      />
     </div>
   );
 };

@@ -79,7 +79,7 @@ const CardSalesSummary = () => {
     return <div className="m-5">Failed to fetch data</div>;
   }
   return (
-    <div className="row-span-3 xl:row-span-6 bg-zinc-900 text-white  border border-zinc-800 rounded-lg flex flex-col justify-between">
+    <div className="row-span-3 xl:row-span-6 bg-zinc-900 text-white  border border-zinc-800 rounded-lg flex flex-col ">
       {isLoading ? (
         <div className="flex-1 flex items-center justify-center text-4xl font-bold  animate-pulse">
           Loading...
