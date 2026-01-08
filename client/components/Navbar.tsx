@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '@/app/redux'
 import { setIsSidebarCollapsed } from '@/app/state'
 import { Bell, Menu, Settings, Search } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const Navbar = () => {
   const dispatch=useAppDispatch();
@@ -47,7 +48,7 @@ const toggleSidebar=()=>{
           <hr className="h-7 w-0 border border-solid border-l mx-3" />
           <div className="flex items-center gap-3 cursor-pointer">
             <div className="w-9 h-9">
-                image
+              <Image src="/xp.jpg" alt="profile" height={60} width={60} className="rounded-full object-cover" />
 
             </div>
             <span className="font-medium">John</span>
