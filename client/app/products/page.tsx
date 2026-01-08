@@ -7,6 +7,7 @@ import { PlusCircleIcon, SearchIcon } from "lucide-react";
 import Header from "@/components/Header";
 import Rating from "@/components/Rating";
 import CreateModal from "@/components/CreateModal";
+import Image from "next/image";
 
 type ProductFormData = {
   name: string;
@@ -14,6 +15,14 @@ type ProductFormData = {
   stockQuantity: number;
   price: number;
 };
+const ProductImages=[
+  "/product1.png",
+  "/product2.png",
+  "/product3.png",
+]
+const RandomImage=()=>{
+  return ProductImages[Math.floor(Math.random()*ProductImages.length)];
+}
 
 const Products = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -83,7 +92,7 @@ const Products = () => {
               className="border shadow rounded-md p-4 max-w-full w-full mx-auto"
             >
               <div className="flex flex-col items-center">
-                img
+                 <Image src={RandomImage()} alt="image" height={100} width={100} className="rounded-md object-cover mb-3"/>
                 <h3 className="text-lg font-semibold">{product.name}</h3>
                 <p className="text-gray-300">${product.price.toFixed(2)}</p>
                 <div className="text-sm text-gray-300">
