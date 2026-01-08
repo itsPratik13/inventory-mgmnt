@@ -12,9 +12,11 @@ import {
   Settings,
   CircleDollarSign,
 } from "lucide-react";
+import Image from "next/image";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
 import React from "react";
 interface SidebarLinkProps {
   href: string;
@@ -80,7 +82,13 @@ const Sidebar = () => {
     <div className={fixedSidebarClassname}>
       {/* top */}
       <div className="flex gap-5 justify-between md:justify-normal items-center pt-8 ">
-        <div className="">logo</div>
+        <Image
+          src="/xp.jpg"
+          alt="profile"
+          width={50}
+          height={50}
+          className="rounded-xl h-full object-cover"
+        />
         {!isSidebarCollapsed && (
           <h1 className="font-semibold block text-2xl mb-0.5 ">Stock</h1>
         )}

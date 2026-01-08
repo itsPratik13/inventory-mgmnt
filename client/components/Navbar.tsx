@@ -48,7 +48,9 @@ const toggleSidebar=()=>{
           <hr className="h-7 w-0 border border-solid border-l mx-3" />
           <div className="flex items-center gap-3 cursor-pointer">
             <div className="w-9 h-9">
-              <Image src="/xp.jpg" alt="profile" height={60} width={60} className="rounded-full object-cover" />
+              <Image src="/xp.jpg" alt="profile"  width={50}
+              height={50}
+              className="rounded-full h-full object-cover" />
 
             </div>
             <span className="font-medium">John</span>
